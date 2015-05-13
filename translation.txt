@@ -108,6 +108,13 @@ Tests
 - 测试3：如果 TSF 支持对子域名放宽同源策略，评估者应为 web 服务器配置子域名，重复测试1和测试2。评估者应验证：脚本能够从另一个窗口/标签页（其 URI 位于另一个子域名）获取内容。
 
 安全的数据传输
+FDP_STR_EXT.1 扩展：cookie 数据的安全传输
+FDP_STR_EXT.1.1 TOE 应确保那些在 set-cookie 头中相应头包含 "secure" attribute 的 cookie 是通过 HTTPS 发送的。
+Application Note:
+set-cookie 头功能在 RFC 6265 "HTTP State Management Mechanism" 中有被阐述。
+Assurance Activity:
+TSS
+评估者应检验 TSS 以验证
 
 
 
