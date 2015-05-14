@@ -109,14 +109,22 @@ Tests
 
 安全的数据传输
 FDP_STR_EXT.1 扩展：cookie 数据的安全传输
-FDP_STR_EXT.1.1 TOE 应确保那些在 set-cookie 头中相应头包含 "secure" attribute 的 cookie 是通过 HTTPS 发送的。
+FDP_STR_EXT.1.1 TOE 应确保那些在 set-cookie 头中包含 "secure" attribute 的 cookie 是通过 HTTPS 发送的。
 Application Note:
 set-cookie 头功能在 RFC 6265 "HTTP State Management Mechanism" 中有被阐述。
 Assurance Activity:
 TSS
-评估者应检验 TSS 以验证
+评估者应检验 TSS 以验证其阐明了 TOE 依据 RFC 6265 支持在 set-cookie 头中包含 "secure" attribute 的 cookie 并通过 HTTPS 发送。
+Guidance
+N/A
+Tests
+评估者应进行如下测试：
+- 测试1：评估者应将 TOE （通过 HTTPS）连到一个（实现了 HTTPS 的）“cookie 允许”（指该网站未被禁用 cookie）的测试网站，且该网站赋予了 TOE 一个 "secure" cookie。评估者应检验 TOE 的 cookie 缓存，确认包含那个 secure cookie。
+- 测试2：评估者应再次连上那个 cookie 允许的网站，这次是通过不安全通道，确认没有 secure cookie 被发送。
 
-
+用户跟踪信息
+FDP_TRK_EXT.1 扩展：跟踪信息收集
+FDP_TRK_EXT.1.1 TOE 应支持
 
 
 
