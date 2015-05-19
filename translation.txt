@@ -204,7 +204,36 @@ Tests
 
 密钥管理
 FCS_CKM.1 密钥生成
-FCS_CKM.1(1) 密钥生成（）
+FCS_CKM.1(1) 密钥生成（用于建立钥匙（key establishment））
+FCS_CKM.1.1(1) 细化：[{{selection}}: TOE，TOE 平台] 应该生成不对称密钥用于建立钥匙，根据：
+- NIST Special Publication 800-56A, "Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography" for elliptic curve-based key establishment schemes and implementing "NIST curves" P-256, P-384 and [{{selection}}: P-521, no other curves] (as defined in FIPS PUB 186-4, "Digital Signature Standard")
+- NIST Special Publication 800-56B, "Recommendation for Pair-Wise Key Establishment Schemes Using Integer Factorization Cryptography" for RSA-based key establishment schemes
+[{{selection}}:
+- NIST Special Publication 800-56A, "Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography" for finite field-based key establishment schemes
+- No other schemes
+]
+以及指定的密钥大小（大于等于一个112位的对称密钥强度）。
+Application Note:
+本组件要求 TSF 或 TOE 平台能够为 TOE 的多种加密协议（cryptographic protocol，如 trusted channel）生成用于建立钥匙的公钥私钥对。如果支持多种 scheme（方案？），那么 ST 作者应该重复本要求，以实现这样的能力（？）。所用的 scheme 会被 ST 作者从 {{selection}} 中选择。由于 the domain parameters to be used are specified by the requirements of the protocol in this PP，不需要 TOE 生成 domain parameters，因此当 TOE 遵守本 PP 中指定的协议时没有必要对 domain parameter 额外验证。
+生成的2048位 DSA 和 RSA 密钥强度（？）需要大于等于一个112位的对称密钥强度。同等密钥强度的信息参见 NIST Special Publication 800-57, "Recommendation for Key Management"。
+RSA 和基于椭圆曲线的 scheme 是需要的，为了遵守 FCS_TLCS_EXT.1 中要求的密码套件（ciphersuites）。
+Assurance Activity:
+TSS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
