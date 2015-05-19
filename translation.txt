@@ -214,17 +214,29 @@ FCS_CKM.1.1(1) 细化：[{{selection}}: TOE，TOE 平台] 应该生成不对称�
 ]
 以及指定的密钥大小（大于等于一个112位的对称密钥强度）。
 Application Note:
-本组件要求 TSF 或 TOE 平台能够为 TOE 的多种加密协议（cryptographic protocol，如 trusted channel）生成用于建立钥匙的公钥私钥对。如果支持多种 scheme（方案？），那么 ST 作者应该重复本要求，以实现这样的能力（？）。所用的 scheme 会被 ST 作者从 {{selection}} 中选择。由于 the domain parameters to be used are specified by the requirements of the protocol in this PP，不需要 TOE 生成 domain parameters，因此当 TOE 遵守本 PP 中指定的协议时没有必要对 domain parameter 额外验证。
+本组件要求 TSF 或 TOE 平台能够为 TOE 的多种加密协议（cryptographic protocol，如 trusted channel）生成用于建立钥匙的公钥私钥对。如果支持多种方案，那么 ST 作者应该重复本要求，以实现这样的能力（？）。所用的方案会被 ST 作者从 {{selection}} 中选择。由于 the domain parameters to be used are specified by the requirements of the protocol in this PP，不需要 TOE 生成 domain parameters，因此当 TOE 遵守本 PP 中指定的协议时没有必要对 domain parameter 额外验证。
 生成的2048位 DSA 和 RSA 密钥强度（？）需要大于等于一个112位的对称密钥强度。同等密钥强度的信息参见 NIST Special Publication 800-57, "Recommendation for Key Management"。
-RSA 和基于椭圆曲线的 scheme 是需要的，为了遵守 FCS_TLCS_EXT.1 中要求的密码套件（ciphersuites）。
+RSA 和基于椭圆曲线的方案是需要的，为了遵守 FCS_TLCS_EXT.1 中要求的密码套件（ciphersuites）。
 Assurance Activity:
 TSS
-
-
-
-
-
-
+TOE 平台满足的要求：评估者应检验平台的 ST 以确保该平台的 ST 中声明的钥匙建立包含 Web 浏览器的 ST 中的钥匙建立要求。评估者还应检验 Web 浏览器的 ST 的 TSS 以确认其（对每个支持的平台）阐明了钥匙建立功能是怎样调用的（应当注意，这个调用可能是通过一个不是由 Web 浏览器所实现的机制，但这个机制会在 TSS 中作为 assurance activity 中的一部分被说明）。
+Guidance
+N/A
+Tests
+TOE 满足的要求：
+评估者应检验钥匙生成算法实现和 TOE 使用的钥匙建立方案。
+Key Generation:
+评估者应使用以下的可行测试来检验支持的方案的钥匙生成算法（？）实现。
+基于 RSA 的钥匙建立方案的钥匙生成：
+评估者应使用钥匙生成测试来检验 TOE 实现的 RSA 钥匙生成。这个测试检验的是 TSF 正确产生（RSA 算法中的）关键值的能力，关键值包括：the public verification exponent e, the private prime factors p and q, the public modulus n, the calculation of the private signature exponent d。
+钥匙对生成有5种特定方法生成质数 p 和 q，如下：
+- 随机质数：
+  - 可证质数（provable primes）
+  - 可能质数（probable primes）
+- 条件质数：
+  - 质数 p1, p2, q1, q2, p, q 都应是可证质数
+  - 质数 p1, p2, q1, q2 应是可证质数，p 和 q 应是可能质数
+  - 质数 p1, p2, q1, q2, p, q 都应是可能质数
 
 
 
