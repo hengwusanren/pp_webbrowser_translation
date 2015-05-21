@@ -237,6 +237,21 @@ Key Generation:
   - 质数 p1, p2, q1, q2, p, q 都应是可证质数
   - 质数 p1, p2, q1, q2 应是可证质数，p 和 q 应是可能质数
   - 质数 p1, p2, q1, q2, p, q 都应是可能质数
+为了随机可证质数法和所有条件质数法的钥匙生成方法的测试，评估者应使用充分的数据来设计验证 TSF 钥匙生成程序（？），以可靠地生成 RSA 钥匙对。这包括随机数种子、the public exponent of the RSA key，以及期望的钥匙长度。对每个支持的钥匙长度，评估者应让 TSF 生成25个钥匙对。评估者应通过比较 TSF 生成的值和一个已有的较好的实现方法生成的值，来检验 TSF 的实现方法的正确性。
+基于有限域加密（Finite-Field Cryptography, FFC）的56A方案（？）的钥匙生成
+FFC Domain Parameter 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
