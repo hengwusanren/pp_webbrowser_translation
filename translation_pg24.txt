@@ -1,0 +1,17 @@
+基于有限域加密（Finite-Field Cryptography, FFC）的56A方案（？）的钥匙生成
+FFC 参数和钥匙生成测试
+评估者应通过参数生成和钥匙生成测试来验证 TOE 实现的 FFC 参数生成和钥匙生成。这个测试验证 TSF 是否能够正确产生这些值：the field prime p, the cryptographic prime q (dividing p-1), the cryptographic group generator g, and the calculation of the private key x and public key y。
+参数生成有两种特定方法生成 the cryptographic prime q 和 the field prime p：
+- Cryptographic and Field Primes:
+  - Primes q and p shall both be provable primes
+  - Primes q and field prime p shall both be probable primes
+和两种方法生成 the cryptographic group generator g：
+- Cryptographic Group Generator:
+  - Generator g constructed through a verifiable process
+  - Generator g constructed through an unverifiable process
+钥匙生成有两种特定方法生成私钥 x：
+  - 私钥：
+    - len(q) bit output of RBG where 1 <= x <= q-1
+    - len(q) + 64 bit output of RBG, followed by a mod q-1 operation where 1 <= x <= q-1
+RBG 的安全强度必须至少是 FFC 参数集的安全强度。
+为了测试 the cryptographic and field prime 生成方法，
